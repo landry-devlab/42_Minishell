@@ -1,0 +1,15 @@
+# --- Executable ---
+minishell
+
+# --- .o and .a files ---
+*.o
+*.a
+
+# --- debugging or tempory files ---
+*.dSYM/
+.vscode/
+.idea/
+
+# --- system unused files---
+.DS_Store
+Thumbs.db
