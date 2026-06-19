@@ -13,17 +13,38 @@
 
 #include "include/minishell.h"
 
-int main(int argc, char **argv, char **envp)
+int	ft_ext_call(char *const prompt[]);
+
+
+int	execute_prompt(char **prompt)
 {
-	(void)argv;
-	(void)envp;
+	pid_t	pid;
 
-	if (argc > 1)
-		return(printf("Error : argument number \n"), 1);
+
+	if (!prompt || !prompt[0])
+		return(1);
+
+	if (strcmp(prompt[0], "exit") == 0)
+	{
+		return(printf("exit minishell\n"), 2);
+	}
+
+	else
+	{
+		pid = fork();
+
+		if (pid < 0)
+			return(printf("error fork\n"), 1);
+		
+		if (pid == 0)
+			return(execvp(prompt[0], prompt), 0);
 	
-	//to do... an exit code system
-
-	//init_minishell(envp);
-
-	return(run_terminal());
+		else
+		{
+			if (waitpid(pid, NULL, 0) == -1)
+				return(printf("error waitpid\n"), 1);
+		}
+	}	
+	
+	return (0);
 }

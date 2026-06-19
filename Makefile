@@ -29,6 +29,8 @@ NAME = minishell
 
 SRC 	= src/main.c \
 		  src/prompt/prompt_test_v0.0.c \
+		  src/execution/execution.c \
+		  src/system/terminal.c \
 		  libft/libft_functions_test_0.0.c
 
 OBJ = $(SRC:.c=.o)
@@ -37,7 +39,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-# $(NAME): $(OBJ) $(LIFT_LIB) 
+# $(NAME): $(OBJ) $(LIFT_LIB)
 #	$(CC) $(CFLAGS) $(OBJ)$(LIBFT_LIB) -o $(NAME)
 
 $(NAME): $(OBJ)

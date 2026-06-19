@@ -23,6 +23,20 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+//function when starting the program
+int		run_terminal(void);
+
+
+//function from the prompt files - when very first test
+void	ft_free_prompt(char **prompt, char *line);
+int		generate_prompt(char ***prompt, char *line);
+
+
+//function for execution
+int		execute_prompt(char **prompt);
+
+
+
 //functions from libft - just for testing - has to be remove when libft put in the file
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *str, unsigned int start, size_t len);
@@ -30,11 +44,6 @@ size_t	ft_strlen(const char *s);
 void	*ft_calloc(size_t nmemb, size_t size);
 
 
-
-//function from the prompt files - when very first test
-void ft_free_prompt(char **prompt);
-char **ft_prompt(char *line);
-void ft_ext_call(char *const prompt[]);
 
 
 

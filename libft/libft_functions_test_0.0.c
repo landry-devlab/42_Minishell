@@ -33,7 +33,7 @@ char	**ft_split(char const *s, char c)
 	int		j;
 	int		pos;
 
-	if (!s || !*s)
+	if (!s)
 		return (NULL);
 	split = malloc(sizeof(char *) * (ft_count_part(s, c) + 1));
 	if (!split)

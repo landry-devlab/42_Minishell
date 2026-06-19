@@ -2,9 +2,12 @@
 
 #include "include/minishell.h"
 
-void ft_free_prompt(char **prompt)
+void ft_free_prompt(char **prompt, char *line)
 {
 	int i;
+
+	if (line)
+		free(line);
 
 	i = 0;
 	while (prompt[i])
@@ -15,16 +18,11 @@ void ft_free_prompt(char **prompt)
 	free(prompt);
 }
 
-char **ft_prompt(char *line)
+int generate_prompt(char ***prompt, char *line)
 {
-	char **prompt;
-
-	prompt = ft_split(line, ' ');
-	return (prompt);
-}
-
-
-void ft_ext_call(char *const prompt[])
-{
-	execvp(prompt[0], prompt);
+	*prompt = ft_split(line, ' ');
+	if (!*prompt)
+		return(printf("Error : ft_split\n"),1);
+	else
+		return(0);
 }
