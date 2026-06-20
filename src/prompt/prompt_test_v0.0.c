@@ -22,7 +22,7 @@ int generate_prompt(char ***prompt, char *line)
 {
 	*prompt = ft_split(line, ' ');
 	if (!*prompt)
-		return(printf("Error : ft_split\n"),1);
+		return(1);
 	else
 		return(0);
 }

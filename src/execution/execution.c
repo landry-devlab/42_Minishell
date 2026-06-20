@@ -25,9 +25,7 @@ int	execute_prompt(char **prompt)
 		return(1);
 
 	if (strcmp(prompt[0], "exit") == 0)
-	{
-		return(printf("exit minishell\n"), 2);
-	}
+		return(3);
 
 	else
 	{

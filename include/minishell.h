@@ -23,6 +23,23 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+typedef struct	s_minishell						//it will be our global variable
+{
+	//char			*environnement;
+	char			*line;//the initial prompt
+	struct s_cmd	*cmd;//pointer to list of prompted commande;
+	int				exit_code;
+}				t_minishell;
+
+typedef struct	s_cmd
+{
+	int				id;
+	char			*commande;//the piece of prompt corresponding to a commande
+	char			**exe_commande;// the tab of token for execution
+	struct s_cmd	*next_commande;
+}				t_cmd;
+
+
 //function when starting the program
 int		run_terminal(void);
 
