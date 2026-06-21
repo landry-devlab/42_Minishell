@@ -17,23 +17,26 @@ t_minishell	g_data;									// our global variable is declared here
 
 int	error_message(void);
 
+void initialize_gdata()
+{
+	g_data.cmd = malloc(sizeof(t_cmd));
+	if (!g_data.cmd)
+		g_data.exit_code = MALLOC_ERROR;
+	else
+	{
+		g_data.cmd->next_cmd = NULL;
+		g_data.cmd->cmd = NULL;
+		g_data.cmd->exe_cmd = NULL;
+		g_data.exit_code = 0;
+	}
+}
+
 int	run_terminal(void)
 {
 	int return_code;
 
-	if (!g_data.cmd)								//initialize the gobal variable
-	{
-		g_data.cmd = malloc(sizeof(t_cmd));
-		if (!g_data.cmd)
-			g_data.exit_code = 4;
-		else
-		{
-			g_data.cmd->next_commande = NULL;
-			g_data.cmd->commande = NULL;
-			g_data.cmd->exe_commande = NULL;
-			g_data.exit_code = 0;
-		}
-	}
+	if (!g_data.cmd)
+		initialize_gdata();								//initialize the gobal variable - To do : isolate to a initialize function
 
 	while (1)
 	{
@@ -47,21 +50,21 @@ int	run_terminal(void)
 		}
 		else
 		{
-			g_data.cmd->commande = g_data.line; 	///to do: split the prompt un bloc of commande regarding | < > << >>
+			g_data.cmd->cmd = g_data.line; 	///to do: split the prompt un bloc of cmd regarding | < > << >>
 			// We continue the programm with only one prompt bloc
 
-			if (generate_prompt(&g_data.cmd->exe_commande, g_data.cmd->commande) != 0)
+			if (generate_prompt(&g_data.cmd->exe_cmd, g_data.cmd->cmd) != 0)
 				g_data.exit_code = 2;
 
-			g_data.exit_code = execute_prompt(g_data.cmd->exe_commande);
+			g_data.exit_code = execute_prompt(g_data.cmd->exe_cmd);
 			if (g_data.exit_code == 0)					//all good -> regenerate a line prompt in our minishell
 				continue;
 			else
 				break;
 		}
 	}
-	return_code = error_message();
-	ft_free_prompt(g_data.cmd->exe_commande, g_data.cmd->commande);
+	return_code = error_message();						//make our minishell print an error message and define a return code 
+	ft_free_prompt(g_data.cmd->exe_cmd, g_data.cmd->cmd);
 	return(return_code);
 }
 
@@ -75,7 +78,7 @@ int	error_message(void)									//to do : ameliorate the error_message function
 		return(printf("Error : ft_split\n"),1);
 	else if (g_data.exit_code == 3)
 		return(printf("Exit minishell\n"),0);
-	else if (g_data.exit_code == 4)
+	else if (g_data.exit_code == MALLOC_ERROR)
 		return(printf("Error : malloc\n"),1);
 	else
 		return(printf("!!! other !!\n"),1);				//impliment here fallowing the situation

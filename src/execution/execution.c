@@ -16,18 +16,17 @@
 int	ft_ext_call(char *const prompt[]);
 
 
-int	execute_prompt(char **prompt)
+int	execute_prompt(char **prompt)						//to do : develop this function and functionalities
 {
 	pid_t	pid;
-
 
 	if (!prompt || !prompt[0])
 		return(1);
 
-	if (strcmp(prompt[0], "exit") == 0)
+	if (strcmp(prompt[0], "exit") == 0)					//manage 'exit' request
 		return(3);
 
-	else
+	else												//manage builin function
 	{
 		pid = fork();
 

@@ -23,20 +23,25 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+// EXIT codes
+# ifndef MALLOC_ERROR
+#  define MALLOC_ERROR 4
+# endif
+
 typedef struct	s_minishell						//it will be our global variable
 {
 	//char			*environnement;
 	char			*line;//the initial prompt
-	struct s_cmd	*cmd;//pointer to list of prompted commande;
+	struct s_cmd	*cmd;//pointer to list of prompted cmd;
 	int				exit_code;
 }				t_minishell;
 
 typedef struct	s_cmd
 {
 	int				id;
-	char			*commande;//the piece of prompt corresponding to a commande
-	char			**exe_commande;// the tab of token for execution
-	struct s_cmd	*next_commande;
+	char			*cmd;//the piece of prompt corresponding to a cmd
+	char			**exe_cmd;// the tab of token for execution
+	struct s_cmd	*next_cmd;
 }				t_cmd;
 
 

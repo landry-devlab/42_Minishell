@@ -1,0 +1,12 @@
+Landry : 
+
+> initialisation function of the global variable
+> add all the libft and printf function (need maybe to be clean)
+> evolution of the split function to tokenize and be able to organise the structure for redirrection
+> manage the env collect
+> modify the error_message function management
+
+
+To do : 
+> arrange the make file to make the libft and printf usable ?
+> add history function ?
