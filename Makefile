@@ -13,25 +13,19 @@
 
 ########## ARGUMENTS ##########
 
-CC = cc
-
-CFLAGS = -Wall -Wextra -Werror
-
-LIBS = -lreadline
-
 NAME = minishell
-
-# LIBFT_DIR = libft
-# LIBFT_LIB = $(libft)/libft.a
-
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+LIBS = -lreadline
+LIBFT_DIR = libft
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
 
 ########## VARIABLES ##########
 
 SRC 	= src/main.c \
 		  src/prompt/prompt_test_v0.0.c \
 		  src/execution/execution.c \
-		  src/system/terminal.c \
-		  libft/libft_functions_test_0.0.c
+		  src/system/terminal.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -39,38 +33,22 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-# $(NAME): $(OBJ) $(LIFT_LIB)
-#	$(CC) $(CFLAGS) $(OBJ)$(LIBFT_LIB) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT_LIB)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) -o $(NAME) $(LIBS)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBS)
-
-
-# $(LIBFT_LIB):
-# 	$(MAKE) -C $(LIBFT_DIR)
+$(LIBFT_LIB):
+	$(MAKE) -C $(LIBFT_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
-# clean :
-# 	rm -rf $(OBJ)
-#	$(MAKE) -C $(LIBFT_DIR) clean
-
-# fclean : clean
-# 	rm -rf $(NAME)
-# 	$(MAKE) -C $(LIBFT_DIR) fclean
-
 clean :
 	rm -rf $(OBJ)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean : clean
 	rm -rf $(NAME)
-
-re : fclean all
-
-.PHONY: clean fclean re all
-
-
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re : fclean all
 

@@ -22,6 +22,7 @@
 #include <readline/history.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include "libft/libft.h"
 
 // EXIT codes
 # ifndef MALLOC_ERROR
@@ -56,17 +57,6 @@ int		generate_prompt(char ***prompt, char *line);
 
 //function for execution
 int		execute_prompt(char **prompt);
-
-
-
-//functions from libft - just for testing - has to be remove when libft put in the file
-char	**ft_split(char const *s, char c);
-char	*ft_substr(char const *str, unsigned int start, size_t len);
-size_t	ft_strlen(const char *s);
-void	*ft_calloc(size_t nmemb, size_t size);
-
-
-
 
 
 
