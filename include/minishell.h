@@ -24,16 +24,30 @@
 #include <stdint.h>
 #include "libft/libft.h"
 
-// EXIT codes
 # ifndef MALLOC_ERROR
-#  define MALLOC_ERROR 4
+#  define MALLOC_ERROR 100
+# endif
+# ifndef READLINE_ERROR
+#  define READLINE_ERROR 101
+# endif
+# ifndef FORK_ERROR
+#  define FORK_ERROR 102
+# endif
+# ifndef WAITPID_ERROR
+#  define WAITPID_ERROR 103
+# endif
+# ifndef ERROR
+#  define ERROR 1
+# endif
+# ifndef SUCCESS
+#  define SUCCESS 0
 # endif
 
 typedef struct	s_minishell						//it will be our global variable
 {
 	//char			*environment;
-  char          *line;//the initial prompt
-	struct s_cmd	*cmd;//pointer to list of prompted cmd;
+  char          *line;  //the initial prompt
+	struct s_cmd	*cmd;
 	int				    exit_code;
 }				t_minishell;
 
@@ -45,9 +59,12 @@ typedef struct	s_cmd
 }				t_cmd;
 
 
+void  exit_after_error(int error, t_minishell gdata);
 int		run_terminal(void);
 void  parse_line(t_minishell	g_data);
-int		execute_prompt(char **prompt);
+void	execute_prompt(t_minishell g_data);
 void	free_data(t_minishell	g_data);
+
+void  ft_exit(char **argv, t_minishell g_data);
 
 #endif

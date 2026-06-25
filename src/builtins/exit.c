@@ -12,33 +12,16 @@
 
 #include "include/minishell.h"
 
-static void ft_free_prompt(char **prompt, char *line)
+void  ft_exit(char **argv, t_minishell g_data)
 {
-	int i;
-
-	if (line)
-		free(line);
-
-	i = 0;
-	while (prompt[i])
-	{
-		free(prompt[i]);
-		i++;
-	}
-	free(prompt);
-}
-
-void free_data(t_minishell g_data)
-{
-  ft_free_prompt(g_data.cmd->argv, g_data.line);
-}
-
-void  exit_after_error(int error, t_minishell g_data)
-{
-  if (error == MALLOC_ERROR)
-    perror("malloc");
-  else if (error == READLINE_ERROR)
-    perror("readline");
-  free_data(g_data);
-  exit(1);
+  if (argv[1])
+  {
+    printf("exit with arguments\n");
+    exit(ft_atoi(argv[1]));
+  }
+  else
+  {
+    printf("exit without arguments\n");
+    exit(g_data.exit_code);
+  }
 }

@@ -13,35 +13,54 @@
 
 #include "include/minishell.h"
 
-int	ft_ext_call(char *const prompt[]);
+static int	execute_builtin(char **argv, t_minishell g_data)
+{
+  printf("Executing builtin:%s\n", argv[0]);
+  if (strcmp(argv[0], "exit") == 0)
+    return (ft_exit(argv, g_data), 1);
+  printf("Builtin:%s not found\n", argv[0]);
+  return (0);
+}
 
+static char *get_pathname(char **argv)
+{
+ 	if (strcmp(argv[0], "ls") == 0)					//manage 'exit' request
+		return("/usr/bin/ls");
+  else
+    return("");
+}
 
-int	execute_prompt(char **prompt)						//to do : develop this function and functionalities
+void	execute_external(char **argv, t_minishell g_data)
 {
 	pid_t	pid;
+	char *pathname;
 
-	if (!prompt || !prompt[0])
-		return(1);
-
-	if (strcmp(prompt[0], "exit") == 0)					//manage 'exit' request
-		return(3);
-
-	else												//manage builin function
+	printf("Executing external:%s\n", argv[0]);
+	pathname = get_pathname(argv);
+	if (strcmp(pathname, "") == 0)
 	{
-		pid = fork();
+	  printf("Command not found:%s\n", argv[0]);
+		return;
+	}
+	pid = fork();
+	if (pid < 0)
+	  exit_after_error(FORK_ERROR, g_data);
+	if (pid == 0)
+		execve(pathname, argv, NULL);
+	else
+	{
+		if (waitpid(pid, NULL, 0) == -1)
+		  exit_after_error(WAITPID_ERROR, g_data);
+	}
+}
 
-		if (pid < 0)
-			return(printf("error fork\n"), 1);
-		
-		if (pid == 0)
-			return(execvp(prompt[0], prompt), 0);
-	
-		else
-		{
-			if (waitpid(pid, NULL, 0) == -1)
-				return(printf("error waitpid\n"), 1);
-		}
-	}	
-	
-	return (0);
+static void	execute_command(char **argv, t_minishell g_data)
+{
+  if (!execute_builtin(argv, g_data))
+    execute_external(argv, g_data);
+}
+
+void	execute_prompt(t_minishell g_data)
+{
+  execute_command(g_data.cmd->argv, g_data);
 }

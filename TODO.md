@@ -1,6 +1,10 @@
 # TODO
 
+- allocate memory for cmd struct in parsing
+- handle signals
 - implement all builtin functions
+- loop through all cmds in execute_prompt
+- search for an external binary in the current directory and through PATH
 - free all cmd in cleanup free_data (it frees only the first cmd now)
 - collect the env on the minishell start
 - implement history

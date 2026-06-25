@@ -25,6 +25,7 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 SRC 	= src/main.c \
 		  src/execution/execution.c \
 		  src/cleanup/cleanup.c \
+		  src/builtins/exit.c \
 		  src/parsing/parsing.c \
 		  src/system/terminal.c
 
