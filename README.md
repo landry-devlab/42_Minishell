@@ -1,4 +1,4 @@
-This project has been created as part of the 42 curriculum by laundry, ssharmaz
+_This project has been created as part of the 42 curriculum by llarrive, ssharmaz_
 
 # Minishell
 

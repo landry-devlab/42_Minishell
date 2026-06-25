@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llarrive <llarrive@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: ssharmaz <ssharmaz@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/01 14:32:39 by llarrive          #+#    #+#             */
-/*   Updated: 2026/06/01 14:32:43 by llarrive         ###   ########.fr       */
+/*   Created: 2026/06/25 10:00:00 by ssharmaz          #+#    #+#             */
+/*   Updated: 2026/06/25 14:32:43 by ssharmaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "include/minishell.h"
 
-int main(int argc, char **argv, char **envp)
+int generate_prompt(char ***prompt, char *line)
 {
-	(void)argv;
-	(void)envp;
+	*prompt = ft_split(line, ' ');
+	if (!*prompt)
+		return(1);
+	else
+		return(0);
+}
 
-	if (argc > 1)
-		return(printf("Error : argument number \n"), 1);
-
-	return(run_terminal());
+void parse_line(t_minishell	g_data)
+{
+  if (generate_prompt(&g_data.cmd->argv, g_data.line) != 0)
+				g_data.exit_code = 2;
 }

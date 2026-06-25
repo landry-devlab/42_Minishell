@@ -1,8 +1,10 @@
 # TODO
 
 - implement all builtin functions
+- free all cmd in cleanup free_data (it frees only the first cmd now)
 - collect the env on the minishell start
 - implement history
+- handle redirections and split the user prompt to blocks regarding | < > << >>
 
 ## Landry
 - modify the error_message function management
@@ -14,4 +16,4 @@
 # DONE
 
 - Integrate libft
-- Initialisation function of the global variable
+- Initialization function for the global variable

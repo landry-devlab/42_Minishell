@@ -23,8 +23,9 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 ########## VARIABLES ##########
 
 SRC 	= src/main.c \
-		  src/prompt/prompt_test_v0.0.c \
 		  src/execution/execution.c \
+		  src/cleanup/cleanup.c \
+		  src/parsing/parsing.c \
 		  src/system/terminal.c
 
 OBJ = $(SRC:.c=.o)
