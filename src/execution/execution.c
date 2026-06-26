@@ -16,8 +16,11 @@
 static int	execute_builtin(char **argv, t_minishell g_data)
 {
   printf("Executing builtin:%s\n", argv[0]);
-  if (strcmp(argv[0], "exit") == 0)
+  if (ft_strcmp(argv[0], "exit") == 0)
     ft_exit(g_data);
+  else if (ft_strcmp(argv[0], "pwd") == 0)
+    return(ft_pwd(), 1);
+
   printf("Builtin:%s not found\n", argv[0]);
   return (0);
 }
