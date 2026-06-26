@@ -67,5 +67,6 @@ void	free_data(t_minishell	g_data);
 
 void  ft_exit(t_minishell g_data);
 void  ft_pwd(void);
+void  ft_cd(char **argv, t_minishell g_data);
 
 #endif

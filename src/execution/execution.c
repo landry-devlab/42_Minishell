@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llarrive <llarrive@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: ssharmaz <ssharmaz@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/01 14:32:39 by llarrive          #+#    #+#             */
-/*   Updated: 2026/06/01 14:32:43 by llarrive         ###   ########.fr       */
+/*   Created: 2026/06/24 14:32:39 by ssharmaz          #+#    #+#             */
+/*   Updated: 2026/06/24 14:32:43 by ssharmaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 
 static int	execute_builtin(char **argv, t_minishell g_data)
 {
-  printf("Executing builtin:%s\n", argv[0]);
+  printf("DEBUG Executing builtin:%s\n", argv[0]);
   if (ft_strcmp(argv[0], "exit") == 0)
     ft_exit(g_data);
   else if (ft_strcmp(argv[0], "pwd") == 0)
     return(ft_pwd(), 1);
+  else if (ft_strcmp(argv[0], "cd") == 0)
+    return(ft_cd(argv, g_data), 1);
 
-  printf("Builtin:%s not found\n", argv[0]);
+  printf("DEBUG Builtin:%s not found\n", argv[0]);
   return (0);
 }
 

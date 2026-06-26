@@ -1,5 +1,9 @@
 # TODO
 
+- implement all builtin functions
+  - export with no options
+  - unset with no options
+  - env with no options or arguments
 - allocate memory for cmd struct in parsing
 - handle signals
   - Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
@@ -24,6 +28,11 @@
 - Handle " (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for $ (dollar sign).
 - Handle $? which should expand to the exit status of the most recently executed
 foreground pipeline.
+- change directory to HOME if not arguments provided in cd builtin command
+- set env variables in cd builtin command:
+  - OLDPWD The previous working directory as set by the cd command.
+  - PWD    The current working directory as set by the cd command.
+
 
 ## Working on
 
@@ -35,17 +44,13 @@ foreground pipeline.
 -- Sergii: do we need to integrate ft_printf, if we can use printf? I'd like to keep the project as simple as possible?
 
 ### Sergii
-- implement all builtin functions
-  - echo with option -n
-  - cd with only a relative or absolute path
-  - pwd with no options
-  - export with no options
-  - unset with no options
-  - env with no options or arguments
-
+- echo with option -n
+  
 
 # DONE
 
 - Integrate libft
 - Initialization function for the global variable
 - exit with no options
+- pwd with no options
+- cd with only a relative or absolute path

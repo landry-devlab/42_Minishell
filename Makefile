@@ -26,6 +26,7 @@ SRC 	= src/main.c \
 		  src/execution/execution.c \
 		  src/cleanup/cleanup.c \
 		  src/builtins/exit.c \
+		  src/builtins/cd.c \
 		  src/builtins/pwd.c \
 		  src/parsing/parsing.c \
 		  src/system/terminal.c
