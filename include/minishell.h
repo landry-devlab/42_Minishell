@@ -65,6 +65,6 @@ void  parse_line(t_minishell	g_data);
 void	execute_prompt(t_minishell g_data);
 void	free_data(t_minishell	g_data);
 
-void  ft_exit(char **argv, t_minishell g_data);
+void  ft_exit(t_minishell g_data);
 
 #endif

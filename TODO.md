@@ -42,10 +42,10 @@ foreground pipeline.
   - export with no options
   - unset with no options
   - env with no options or arguments
-  - exit with no options
 
 
 # DONE
 
 - Integrate libft
 - Initialization function for the global variable
+- exit with no options

@@ -12,16 +12,9 @@
 
 #include "include/minishell.h"
 
-void  ft_exit(char **argv, t_minishell g_data)
+void  ft_exit(t_minishell g_data)
 {
-  if (argv[1])
-  {
-    printf("exit with arguments\n");
-    exit(ft_atoi(argv[1]));
-  }
-  else
-  {
-    printf("exit without arguments\n");
-    exit(g_data.exit_code);
-  }
+  free_data(g_data);
+  write(2, "exit\n", 5);
+  exit(g_data.exit_code);
 }
