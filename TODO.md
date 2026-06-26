@@ -44,13 +44,12 @@ foreground pipeline.
 -- Sergii: do we need to integrate ft_printf, if we can use printf? I'd like to keep the project as simple as possible?
 
 ### Sergii
-- echo with option -n
   
 
 # DONE
-
-- Integrate libft
-- Initialization function for the global variable
-- exit with no options
-- pwd with no options
+- echo with option -n
 - cd with only a relative or absolute path
+- pwd with no options
+- exit with no options
+- Initialization function for the global variable
+- Integrate libft

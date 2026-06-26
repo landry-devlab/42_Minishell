@@ -22,6 +22,8 @@ static int	execute_builtin(char **argv, t_minishell g_data)
     return(ft_pwd(), 1);
   else if (ft_strcmp(argv[0], "cd") == 0)
     return(ft_cd(argv, g_data), 1);
+  else if (ft_strcmp(argv[0], "echo") == 0)
+    return(ft_echo(argv), 1);
 
   printf("DEBUG Builtin:%s not found\n", argv[0]);
   return (0);
