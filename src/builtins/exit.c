@@ -12,9 +12,9 @@
 
 #include "include/minishell.h"
 
-void  ft_exit(t_minishell g_data)
+void  ft_exit(t_minishell *g_data)
 {
-  free_data(g_data);
+  free_data(*g_data);
   write(2, "exit\n", 5);
-  exit(g_data.exit_code);
+  exit(g_data->exit_code);
 }

@@ -12,7 +12,7 @@
 
 #include "include/minishell.h"
 
-void  ft_echo(char **argv)
+void  ft_echo(char **argv, t_minishell *g_data)
 {
   int newline;
   int i;
@@ -35,4 +35,5 @@ void  ft_echo(char **argv)
   }
   if (newline)
     printf("\n");
+  g_data->exit_code = EXIT_SUCCESS;
 }

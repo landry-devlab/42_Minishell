@@ -32,7 +32,7 @@ foreground pipeline.
 - set env variables in cd builtin command:
   - OLDPWD The previous working directory as set by the cd command.
   - PWD    The current working directory as set by the cd command.
-
+- verify with valgrind and fix leaks
 
 ## Working on
 

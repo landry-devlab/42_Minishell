@@ -34,6 +34,6 @@ int	run_terminal(void)
 		if (!g_data.line)
 			exit_after_error(READLINE_ERROR, g_data);
 		parse_line(g_data);
-		execute_prompt(g_data);
+		execute_prompt(&g_data);
 	}
 }

@@ -13,17 +13,17 @@
 
 #include "include/minishell.h"
 
-static int	execute_builtin(char **argv, t_minishell g_data)
+static int	execute_builtin(char **argv, t_minishell *g_data)
 {
   printf("DEBUG Executing builtin:%s\n", argv[0]);
   if (ft_strcmp(argv[0], "exit") == 0)
     ft_exit(g_data);
   else if (ft_strcmp(argv[0], "pwd") == 0)
-    return(ft_pwd(), 1);
+    return(ft_pwd(g_data), 1);
   else if (ft_strcmp(argv[0], "cd") == 0)
     return(ft_cd(argv, g_data), 1);
   else if (ft_strcmp(argv[0], "echo") == 0)
-    return(ft_echo(argv), 1);
+    return(ft_echo(argv, g_data), 1);
 
   printf("DEBUG Builtin:%s not found\n", argv[0]);
   return (0);
@@ -37,7 +37,7 @@ static char *get_pathname(char **argv)
     return("");
 }
 
-void	execute_external(char **argv, t_minishell g_data)
+void	execute_external(char **argv, t_minishell *g_data)
 {
 	pid_t	pid;
 	char *pathname;
@@ -51,23 +51,23 @@ void	execute_external(char **argv, t_minishell g_data)
 	}
 	pid = fork();
 	if (pid < 0)
-	  exit_after_error(FORK_ERROR, g_data);
+	  exit_after_error(FORK_ERROR, *g_data);
 	if (pid == 0)
 		execve(pathname, argv, NULL);
 	else
 	{
 		if (waitpid(pid, NULL, 0) == -1)
-		  exit_after_error(WAITPID_ERROR, g_data);
+		  exit_after_error(WAITPID_ERROR, *g_data);
 	}
 }
 
-static void	execute_command(char **argv, t_minishell g_data)
+static void	execute_command(char **argv, t_minishell *g_data)
 {
   if (!execute_builtin(argv, g_data))
     execute_external(argv, g_data);
 }
 
-void	execute_prompt(t_minishell g_data)
+void	execute_prompt(t_minishell *g_data)
 {
-  execute_command(g_data.cmd->argv, g_data);
+  execute_command(g_data->cmd->argv, g_data);
 }

@@ -36,11 +36,11 @@
 # ifndef WAITPID_ERROR
 #  define WAITPID_ERROR 103
 # endif
-# ifndef ERROR
-#  define ERROR 1
+# ifndef EXIT_ERROR
+#  define EXIT_ERROR 1
 # endif
-# ifndef SUCCESS
-#  define SUCCESS 0
+# ifndef EXIT_SUCCESS
+#  define EXIT_SUCCESS 0
 # endif
 
 typedef struct	s_minishell						//it will be our global variable
@@ -61,13 +61,13 @@ typedef struct	s_cmd
 
 void  exit_after_error(int error, t_minishell gdata);
 int		run_terminal(void);
-void  parse_line(t_minishell	g_data);
-void	execute_prompt(t_minishell g_data);
+void  parse_line(t_minishell g_data);
+void	execute_prompt(t_minishell *g_data);
 void	free_data(t_minishell	g_data);
 
-void  ft_exit(t_minishell g_data);
-void  ft_pwd(void);
-void  ft_cd(char **argv, t_minishell g_data);
-void  ft_echo(char **argv);
+void  ft_exit(t_minishell *g_data);
+void  ft_pwd(t_minishell *g_data);
+void  ft_cd(char **argv, t_minishell *g_data);
+void  ft_echo(char **argv, t_minishell *g_data);
 
 #endif
