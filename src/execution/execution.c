@@ -63,7 +63,9 @@ void	execute_external(char **argv, t_minishell *g_data)
 
 static void	execute_command(char **argv, t_minishell *g_data)
 {
-  if (!execute_builtin(argv, g_data))
+	if (!argv || !argv[0])
+		return;	
+	if (!execute_builtin(argv, g_data))
     execute_external(argv, g_data);
 }
 

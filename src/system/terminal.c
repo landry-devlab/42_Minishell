@@ -25,9 +25,9 @@ void initialize_gdata(t_minishell	*g_data)
 
 int	run_terminal(void)
 {
-  t_minishell	g_data;
+	t_minishell	g_data;
 
-  initialize_gdata(&g_data);
+	initialize_gdata(&g_data);
 	while (1)
 	{
 		g_data.line = readline("$: ");

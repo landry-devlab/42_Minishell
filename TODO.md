@@ -47,9 +47,10 @@ foreground pipeline.
   
 
 # DONE
+- replaced space to tabs
 - echo with option -n
 - cd with only a relative or absolute path
 - pwd with no options
-- exit with no options
+- exit with no optionsaqqq
 - Initialization function for the global variable
 - Integrate libft
