@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* 	This is our parsing function. 
+	We first split the initial prompt to command lines via generate_cmd function
+	we use than tokenize_cmd to split each command lines to its arguments */
+
 #include "include/minishell.h"
 
 static int	generate_cmd(t_minishell *s_data)

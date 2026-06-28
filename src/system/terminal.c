@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* This is our minishell terminal function. */
+
 
 #include "include/minishell.h"
 

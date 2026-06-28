@@ -13,7 +13,7 @@
 
 #include "include/minishell.h"
 
-static int	execute_builtin(char **argv, t_minishell *s_data) // probleme with the return code ? 1 / 0
+static int	execute_builtin(char **argv, t_minishell *s_data) // probleme with the return code 1 / 0
 {
 	printf("DEBUG Executing builtin:%s\n", argv[0]);
 	if (ft_strcmp(argv[0], "exit") == 0)

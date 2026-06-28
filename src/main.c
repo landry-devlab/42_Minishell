@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* This is our main function which lauch our minishell. */
 
 #include "include/minishell.h"
 

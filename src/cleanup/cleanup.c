@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssharmaz <ssharmaz@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,6 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* 	This is our clean and free function.
+ 	free_cmd clean the different command
+	free_data clean and reset to NULL the data structure
+	exit_after_error function print to stderr information in case of problems
+	*/
 #include "include/minishell.h"
 
 void free_cmd(t_cmd *cmd_list)
