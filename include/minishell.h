@@ -43,31 +43,36 @@
 #  define EXIT_SUCCESS 0
 # endif
 
-typedef struct	s_minishell						//it will be our global variable
-{
-	//char			*environment;
-  char          *line;  //the initial prompt
-	struct s_cmd	*cmd;
-	int				    exit_code;
-}				t_minishell;
-
-typedef struct	s_cmd
+typedef struct		s_cmd							//this is splited command linked list
 {
 	int				id;
+	char			*initialcmd;
 	char			**argv;
 	struct s_cmd	*next;
-}				t_cmd;
+}					t_cmd; 
 
 
-void  exit_after_error(int error, t_minishell gdata);
+typedef struct	s_minishell						//this is our main structure variable
+{
+	//char			*environment;
+	char			*line;							//refers to the initial prompt
+	t_cmd			*cmd_list;					//points to segments of the original prompt.
+	int				exit_code;						//refers to an exit code
+}				t_minishell;
+
+
 int		run_terminal(void);
-void  parse_line(t_minishell g_data);
-void	execute_prompt(t_minishell *g_data);
-void	free_data(t_minishell	g_data);
+void	parse_line(t_minishell *s_data);
+void	execute_prompt(t_minishell *s_data);
 
-void  ft_exit(t_minishell *g_data);
-void  ft_pwd(t_minishell *g_data);
-void  ft_cd(char **argv, t_minishell *g_data);
-void  ft_echo(char **argv, t_minishell *g_data);
+//cleanup
+void	free_data(t_minishell *s_data);
+void	free_cmd(t_cmd *cmd_list);
+void	exit_after_error(int error_msg, t_minishell *s_data);
+
+void	ft_exit(t_minishell *s_data);
+void	ft_pwd(t_minishell *s_data);
+void	ft_cd(char **argv, t_minishell *s_data);
+void	ft_echo(char **argv, t_minishell *s_data);
 
 #endif

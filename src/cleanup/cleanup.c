@@ -12,33 +12,46 @@
 
 #include "include/minishell.h"
 
-static void ft_free_prompt(char **prompt, char *line)
+void free_cmd(t_cmd *cmd_list)
 {
-	int i;
+	int 	i;
+	t_cmd	*next;
 
-	if (line)
-		free(line);
-
-	i = 0;
-	while (prompt[i])
+	while (cmd_list)
 	{
-		free(prompt[i]);
-		i++;
+		next = cmd_list->next;
+		free(cmd_list->initialcmd);
+		if (cmd_list->argv)
+		{
+			i = 0;
+			while (cmd_list->argv[i])
+			{
+				free(cmd_list->argv[i]);
+				i++;
+			}
+			free(cmd_list->argv);
+		}
+		free(cmd_list);
+		cmd_list = next;
 	}
-	free(prompt);
 }
 
-void free_data(t_minishell g_data)
+void free_data(t_minishell *s_data)
 {
-  ft_free_prompt(g_data.cmd->argv, g_data.line);
+	if (s_data->line)
+		free(s_data->line);
+	s_data->line = NULL;
+	if (s_data->cmd_list)
+		free_cmd(s_data->cmd_list);
+	s_data->cmd_list = NULL;
 }
 
-void  exit_after_error(int error, t_minishell g_data)
+void	exit_after_error(int error_msg, t_minishell *s_data)
 {
-  if (error == MALLOC_ERROR)
-    perror("malloc");
-  else if (error == READLINE_ERROR)
-    perror("readline");
-  free_data(g_data);
-  exit(1);
+	if (error_msg == MALLOC_ERROR)
+		perror("malloc");
+	if (error_msg == READLINE_ERROR)
+		perror("readline");
+	free_data(s_data);
+	exit(1);
 }

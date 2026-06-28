@@ -1,9 +1,11 @@
 # TODO
 
+- change the builtin_command  with is_builtin_command
 - implement all builtin functions
   - export with no options
   - unset with no options
   - env with no options or arguments
+- parse double quotes properly
 - allocate memory for cmd struct in parsing
 - handle signals
   - Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
@@ -47,6 +49,8 @@ foreground pipeline.
   
 
 # DONE
+- changed the s_data and cmd cleaning function (previous one exposed to segfault)
+- changed g_data to s_data
 - replaced space to tabs
 - echo with option -n
 - cd with only a relative or absolute path

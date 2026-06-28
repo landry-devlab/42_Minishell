@@ -12,12 +12,12 @@
 
 #include "include/minishell.h"
 
-void  ft_cd(char **argv, t_minishell *g_data)
+void  ft_cd(char **argv, t_minishell *s_data)
 {
   if (argv[1])
   {
-    g_data->exit_code = chdir(argv[1]);
-    if (g_data->exit_code)
+    s_data->exit_code = chdir(argv[1]);
+    if (s_data->exit_code)
       perror("cd");
   }
   else

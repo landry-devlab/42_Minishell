@@ -13,31 +13,31 @@
 
 #include "include/minishell.h"
 
-static int	execute_builtin(char **argv, t_minishell *g_data)
+static int	execute_builtin(char **argv, t_minishell *s_data) // probleme with the return code ? 1 / 0
 {
-  printf("DEBUG Executing builtin:%s\n", argv[0]);
-  if (ft_strcmp(argv[0], "exit") == 0)
-    ft_exit(g_data);
-  else if (ft_strcmp(argv[0], "pwd") == 0)
-    return(ft_pwd(g_data), 1);
-  else if (ft_strcmp(argv[0], "cd") == 0)
-    return(ft_cd(argv, g_data), 1);
-  else if (ft_strcmp(argv[0], "echo") == 0)
-    return(ft_echo(argv, g_data), 1);
+	printf("DEBUG Executing builtin:%s\n", argv[0]);
+	if (ft_strcmp(argv[0], "exit") == 0)
+		ft_exit(s_data);
+	else if (ft_strcmp(argv[0], "pwd") == 0)
+		return(ft_pwd(s_data), 1);
+	else if (ft_strcmp(argv[0], "cd") == 0)
+		return(ft_cd(argv, s_data), 1);
+	else if (ft_strcmp(argv[0], "echo") == 0)
+		return(ft_echo(argv, s_data), 1);
 
-  printf("DEBUG Builtin:%s not found\n", argv[0]);
-  return (0);
+	printf("DEBUG Builtin:%s not found\n", argv[0]);
+	return (0);
 }
 
 static char *get_pathname(char **argv)
 {
- 	if (strcmp(argv[0], "ls") == 0)					//manage 'exit' request
+	if (ft_strcmp(argv[0], "ls") == 0)					//manage 'exit' request
 		return("/usr/bin/ls");
-  else
-    return("");
+	else
+		return("");
 }
 
-void	execute_external(char **argv, t_minishell *g_data)
+void	execute_external(char **argv, t_minishell *s_data)
 {
 	pid_t	pid;
 	char *pathname;
@@ -51,25 +51,25 @@ void	execute_external(char **argv, t_minishell *g_data)
 	}
 	pid = fork();
 	if (pid < 0)
-	  exit_after_error(FORK_ERROR, *g_data);
+		exit_after_error(FORK_ERROR, s_data);
 	if (pid == 0)
 		execve(pathname, argv, NULL);
 	else
 	{
 		if (waitpid(pid, NULL, 0) == -1)
-		  exit_after_error(WAITPID_ERROR, *g_data);
+		  exit_after_error(WAITPID_ERROR, s_data);
 	}
 }
 
-static void	execute_command(char **argv, t_minishell *g_data)
+static void	execute_command(char **argv, t_minishell *s_data)
 {
 	if (!argv || !argv[0])
 		return;	
-	if (!execute_builtin(argv, g_data))
-    execute_external(argv, g_data);
+	if (!execute_builtin(argv, s_data))//check if it is a builtin
+	execute_external(argv, s_data);
 }
 
-void	execute_prompt(t_minishell *g_data)
+void	execute_prompt(t_minishell *s_data)
 {
-  execute_command(g_data->cmd->argv, g_data);
+	execute_command(s_data->cmd_list->argv, s_data);
 }

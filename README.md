@@ -5,6 +5,7 @@ _This project has been created as part of the 42 curriculum by llarrive, ssharma
 ## Description 
 
 The shell should:
+- our minishell doesn't take any argument when lauching the initial progam and will return an error message
 - Display a prompt when waiting for a new command.
 - Have a working history.
 - Search and launch the right executable (based on the PATH variable or using a relative or an absolute path).
@@ -46,3 +47,7 @@ make, run ./minishell and enjoy!
 ## Resources
 
  AI was used for planning and discussing the implementation, as well as Makefile updates.
+
+Testcases
+
+in normal Bash, prompting exit result to "exit" printed in the standard error, and exit.

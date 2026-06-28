@@ -19,7 +19,7 @@ int main(int argc, char **argv, char **envp)
 	(void)envp;
 
 	if (argc > 1)
-		return(printf("Arguments \n"), 1);
+		return(printf("Error : arguments \n"), 1);
 
 	return(run_terminal());
 }

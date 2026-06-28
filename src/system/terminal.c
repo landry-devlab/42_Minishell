@@ -13,27 +13,25 @@
 
 #include "include/minishell.h"
 
-void initialize_gdata(t_minishell	*g_data)
+static void initialize_sdata(t_minishell *s_data)
 {
-	g_data->cmd = malloc(sizeof(t_cmd));
-	if (!g_data->cmd)
-	  exit_after_error(MALLOC_ERROR, *g_data);
-	g_data->cmd->next = NULL;
-	g_data->cmd->argv = NULL;
-	g_data->exit_code = 0;
+	s_data->line = NULL;
+	s_data->cmd_list = NULL;
+	s_data->exit_code = 0;
 }
 
 int	run_terminal(void)
 {
-	t_minishell	g_data;
+	t_minishell	s_data;
 
-	initialize_gdata(&g_data);
+	initialize_sdata(&s_data);
 	while (1)
 	{
-		g_data.line = readline("$: ");
-		if (!g_data.line)
-			exit_after_error(READLINE_ERROR, g_data);
-		parse_line(g_data);
-		execute_prompt(&g_data);
+		s_data.line = readline("$: ");
+		if (!s_data.line)
+			exit_after_error(READLINE_ERROR, &s_data);
+		parse_line(&s_data);
+		execute_prompt(&s_data);
+		free_data(&s_data);
 	}
 }

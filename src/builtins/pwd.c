@@ -12,11 +12,11 @@
 
 #include "include/minishell.h"
 
-void  ft_pwd(t_minishell *g_data)
+void  ft_pwd(t_minishell *s_data)
 {
   static char  buf[4096];
 
   if (getcwd(buf, sizeof(buf)))
     printf("%s\n", buf);
-  g_data->exit_code = EXIT_SUCCESS;
+  s_data->exit_code = EXIT_SUCCESS;
 }
