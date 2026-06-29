@@ -1,6 +1,5 @@
 # TODO
 
-- change the builtin_command  with is_builtin_command
 - implement all builtin functions
   - export with no options
   - unset with no options
@@ -16,7 +15,6 @@
 - loop through all cmds in execute_prompt
 - search for an external binary in the current directory and through PATH
 - free all cmd in cleanup free_data (it frees only the first cmd now)
-- collect the env on the minishell start
 - implement history
 - Implement the following redirections:
   - < should redirect input.
@@ -46,7 +44,8 @@ foreground pipeline.
 -- Sergii: do we need to integrate ft_printf, if we can use printf? I'd like to keep the project as simple as possible?
 
 ### Sergii
-  
+- change the builtin_command  with is_builtin_command
+- collect the env on the minishell start
 
 # DONE
 - changed the s_data and cmd cleaning function (previous one exposed to segfault)
