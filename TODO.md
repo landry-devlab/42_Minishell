@@ -28,7 +28,8 @@ foreground pipeline.
 - change directory to HOME if not arguments provided in cd builtin command
 - set env variables in cd builtin command:
   - OLDPWD The previous working directory as set by the cd command.
-  - PWD    The current working directory as set by the cd command.
+  - PWD The current working directory as set by the cd command.
+- Exit with proper exit_code
 
 ## Other
 - handle signals

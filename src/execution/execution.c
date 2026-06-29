@@ -28,7 +28,7 @@ static int	is_builtin(char *command)
 
 static void	execute_builtin(char **argv, t_minishell *s_data) // probleme with the return code 1 / 0
 {
-	printf("DEBUG Executing builtin:%s\n", argv[0]);
+	// printf("DEBUG Executing builtin:%s\n", argv[0]);
 	if (ft_strcmp(argv[0], "exit") == 0)
 		ft_exit(s_data);
 	else if (ft_strcmp(argv[0], "pwd") == 0)
@@ -54,7 +54,7 @@ void	execute_external(char **argv, t_minishell *s_data)
 	pid_t	pid;
 	char *pathname;
 
-	printf("DEBUG Executing external:%s\n", argv[0]);
+	// printf("DEBUG Executing external:%s\n", argv[0]);
 	pathname = get_pathname(argv);
 	if (strcmp(pathname, "") == 0)
 	{
@@ -71,7 +71,7 @@ void	execute_external(char **argv, t_minishell *s_data)
 		if (waitpid(pid, NULL, 0) == -1)
 			exit_after_error(WAITPID_ERROR, s_data);
 	}
-	printf("DEBUG Finish executing external:%s\n", argv[0]);
+	// printf("DEBUG Finish executing external:%s\n", argv[0]);
 }
 
 static void	execute_command(char **argv, t_minishell *s_data)

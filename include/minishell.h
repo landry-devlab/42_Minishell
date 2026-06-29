@@ -45,23 +45,32 @@
 
 typedef struct		s_cmd							//this is splited command linked list
 {
-	int				id;
-	char			*initialcmd;
-	char			**argv;
+	int						id;
+	char					*initialcmd;
+	char					**argv;
 	struct s_cmd	*next;
-}					t_cmd; 
+}	t_cmd;
 
+typedef struct	s_env
+{
+	char					*key;
+	char					*value;
+	struct s_env	*next;
+} t_env;
 
 typedef struct	s_minishell						//this is our main structure variable
 {
-	//char			*environment;
 	char			*line;							//refers to the initial prompt
 	t_cmd			*cmd_list;					//points to segments of the original prompt.
+	t_env			*env;
 	int				exit_code;						//refers to an exit code
-}				t_minishell;
+}	t_minishell;
 
+int		initialize_sdata(t_minishell *s_data, char **envp);
+t_env	*init_env(char **envp);
+void	print_env(t_minishell s_data);
 
-int		run_terminal(void);
+int		run_terminal(t_minishell *s_data);
 void	parse_line(t_minishell *s_data);
 void	execute_prompt(t_minishell *s_data);
 

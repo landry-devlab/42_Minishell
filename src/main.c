@@ -16,11 +16,12 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	(void)argv;
-	(void)envp;
+	t_minishell	s_data;
 
+	(void)argv;
 	if (argc > 1)
 		return(printf("Error : arguments \n"), 1);
-
-	return(run_terminal());
+	initialize_sdata(&s_data, envp);
+	print_env(s_data);
+	return(run_terminal(&s_data));
 }

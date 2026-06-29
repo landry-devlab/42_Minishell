@@ -23,6 +23,7 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 ########## VARIABLES ##########
 
 SRC 	= src/main.c \
+		  src/environment/environment.c \
 		  src/execution/execution.c \
 		  src/cleanup/cleanup.c \
 		  src/builtins/exit.c \
