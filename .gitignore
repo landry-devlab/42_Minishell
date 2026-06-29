@@ -1,5 +1,6 @@
 # --- Executable ---
 minishell
+*.out
 
 # --- .o and .a files ---
 *.o
