@@ -12,6 +12,7 @@ foreground pipeline.
 
 ## Execution
 - Execution: exit only on the top level (in the run_terminil loop), not in the execution/parsing functions. 
+- Update exit_code on execution external commands
 - implement all builtin functions
   - export with no options
   - unset with no options
@@ -49,10 +50,10 @@ foreground pipeline.
 -- Sergii: do we need to integrate ft_printf, if we can use printf? I'd like to keep the project as simple as possible?
 
 ### Sergii
-- change the builtin_command  with is_builtin_command
 - collect the env on the minishell start
 
 # DONE
+- change the builtin_command  with is_builtin_command
 - free all cmd in cleanup free_data (it frees only the first cmd now)
 - changed the s_data and cmd cleaning function (previous one exposed to segfault)
 - changed g_data to s_data
